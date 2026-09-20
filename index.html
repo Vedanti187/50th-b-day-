@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy 50th Birthday Papa ❤️</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+    }
+
+    body {
+      background: linear-gradient(135deg, #d8c4b8, #f5e9df);
+      font-family: Georgia, serif;
+      color: #493b36;
+      overflow: hidden;
+    }
+
+    /* INTRO */
+    #intro {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: radial-gradient(circle, #fffaf5, #dfcabe);
+    }
+
+    .intro-content {
+      width: 90%;
+      max-width: 550px;
+      padding: 25px;
+      animation: floating 3s ease-in-out infinite;
+    }
+
+    .intro-small {
+      font-size: 15px;
+      letter-spacing: 2px;
+      color: #76564b;
+      margin-bottom: 15px;
+    }
+
+    .intro-title {
+      font-family: cursive;
+      font-size: 46px;
+      line-height: 1.1;
+      color: #49342d;
+      margin-bottom: 15px;
+    }
+
+    .intro-subtitle {
+      font-size: 16px;
+      line-height: 1.5;
+      color: #705148;
+      margin-bottom: 25px;
+    }
+
+    .open-button {
+      border: 0;
+      background: #705148;
+      color: white;
+      padding: 14px 28px;
+      border-radius: 40px;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(0,0,0,.2);
+      touch-action: manipulation;
+    }
+
+    .open-button:active {
+      transform: scale(.96);
+    }
+
+    @keyframes floating {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    /* MUSIC BUTTON */
+    #musicButton {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      z-index: 500;
+      width: 42px;
+      height: 42px;
+      border: 0;
+      border-radius: 50%;
+      background: #76564b;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* BOOK & PAGES */
+    .book {
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+    }
+
+    .page {
+      position: absolute;
+      width: 92vw;
+      max-width: 480px;
+      height: 85vh;
+      max-height: 740px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      background: #fffaf2;
+      border-radius: 16px;
+      padding: 20px 16px;
+      display: none;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      box-shadow: 0 20px 60px rgba(0,0,0,.22);
+    }
+
+    .page.active {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: pageOpen .4s ease;
+    }
+
+    @keyframes pageOpen {
+      from { opacity: 0; transform: translate(-50%, -50%) scale(.95); }
+      to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    }
+
+    .page:before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image: radial-gradient(#b9a89c .7px, transparent .7px);
+      background-size: 12px 12px;
+      opacity: .12;
+    }
+
+    .content {
+      width: 100%;
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .small {
+      font-family: cursive;
+      font-size: 19px;
+      letter-spacing: 2px;
+      color: #76564b;
+    }
+
+    h1 {
+      font-family: cursive;
+      font-size: 42px;
+      line-height: 1.1;
+      margin: 12px 0;
+      color: #49342d;
+    }
+
+    h2 {
+      font-family: cursive;
+      font-size: 26px;
+      line-height: 1.2;
+      margin-bottom: 12px;
+      color: #5e4339;
+    }
+
+    p {
+      font-size: 15px;
+      line-height: 1.6;
+      max-width: 400px;
+    }
+
+    .heart {
+      font-size: 46px;
+      margin: 8px;
+      animation: heartbeat 1.4s infinite;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+    }
+
+    /* IMAGE STACK - ZERO CUTTING */
+    .photo-stack {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin: 6px 0 10px;
+    }
+
+    .stack-card {
+      background: white;
+      padding: 6px;
+      border-radius: 6px;
+      box-shadow: 0 6px 16px rgba(0,0,0,.12);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .stack-card img {
+      width: 100%;
+      max-height: 180px;
+      object-fit: contain;
+      border-radius: 4px;
+      background: #faf7f5;
+    }
+
+    .stack-caption {
+      font-size: 12px;
+      line-height: 1.3;
+      color: #76564b;
+      margin-top: 6px;
+    }
+
+    .next-button {
+      margin-top: 12px;
+      border: 0;
+      background: #76564b;
+      color: white;
+      padding: 10px 24px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-family: Georgia, serif;
+      font-size: 14px;
+      touch-action: manipulation;
+    }
+
+    .next-button:active {
+      transform: scale(.95);
+    }
+
+    .counter {
+      position: fixed;
+      top: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 300;
+      font-family: cursive;
+      font-size: 17px;
+      color: #493b36;
+      pointer-events: none;
+    }
+
+    .nav {
+      position: fixed;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 300;
+      display: flex;
+      gap: 14px;
+    }
+
+    .nav button {
+      border: 0;
+      background: #76564b;
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      font-size: 17px;
+      cursor: pointer;
+      touch-action: manipulation;
+    }
+
+    .floating-heart {
+      position: fixed;
+      bottom: -50px;
+      z-index: 200;
+      pointer-events: none;
+      animation: floatHeart 6s linear forwards;
+    }
+
+    @keyframes floatHeart {
+      0% { transform: translateY(0) rotate(0); opacity: 0; }
+      15% { opacity: .8; }
+      100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+    }
+  </style>
+
+  <script>
+    var currentPage = 0;
+    var heartsStarted = false;
+
+    function handleImgError(img) {
+      var attempt = parseInt(img.dataset.attempt || "0", 10);
+      var currentSrc = img.getAttribute("src") || "";
+
+      if (attempt === 0) {
+        img.dataset.attempt = "1";
+        if (currentSrc.indexOf("photos/0") !== -1) {
+          img.src = currentSrc.replace("photos/0", "photos/");
+          return;
+        }
+      }
+      if (attempt <= 1) {
+        img.dataset.attempt = "2";
+        if (img.src.indexOf(".jpg") !== -1) {
+          img.src = img.src.replace(".jpg", ".jpeg");
+          return;
+        }
+      }
+      if (attempt <= 2) {
+        img.dataset.attempt = "3";
+        if (img.src.indexOf(".jpeg") !== -1) {
+          img.src = img.src.replace(".jpeg", ".png");
+          return;
+        }
+      }
+      img.style.minHeight = "120px";
+      img.style.background = "#eeddd0";
+      img.alt = "❤️ Papa & Family";
+    }
+
+    function getAllPages() {
+      return document.querySelectorAll(".book .page");
+    }
+
+    function updateCounter() {
+      var pages = getAllPages();
+      var counterEl = document.getElementById("counter");
+      if (counterEl && pages.length > 0) {
+        counterEl.textContent = (currentPage + 1) + " / " + pages.length;
+      }
+    }
+
+    function showPage(n) {
+      var pages = getAllPages();
+      if (!pages || pages.length === 0) return;
+
+      if (n < 0) n = 0;
+      if (n >= pages.length) n = pages.length - 1;
+      currentPage = n;
+
+      for (var i = 0; i < pages.length; i++) {
+        pages[i].classList.remove("active");
+      }
+
+      pages[currentPage].classList.add("active");
+      pages[currentPage].scrollTop = 0;
+      updateCounter();
+    }
+
+    function nextPage() {
+      var pages = getAllPages();
+      if (currentPage < pages.length - 1) {
+        showPage(currentPage + 1);
+      }
+    }
+
+    function previousPage() {
+      if (currentPage > 0) {
+        showPage(currentPage - 1);
+      }
+    }
+
+    function openBook() {
+      var introEl = document.getElementById("intro");
+      if (introEl) {
+        introEl.style.cssText = "display: none !important;";
+      }
+      showPage(0);
+      startHearts();
+
+      var music = document.getElementById("music");
+      var musicButton = document.getElementById("musicButton");
+      if (music) {
+        try {
+          var p = music.play();
+          if (p && p.then) {
+            p.then(function() {
+              if (musicButton) musicButton.textContent = "🎵";
+            }).catch(function() {
+              if (musicButton) musicButton.textContent = "🔇";
+            });
+          }
+        } catch(e) {
+          if (musicButton) musicButton.textContent = "🔇";
+        }
+      }
+    }
+
+    function toggleMusic() {
+      var music = document.getElementById("music");
+      var musicButton = document.getElementById("musicButton");
+      if (!music) return;
+      if (music.paused) {
+        music.play().then(function() {
+          if (musicButton) musicButton.textContent = "🎵";
+        }).catch(function() {
+          if (musicButton) musicButton.textContent = "🔇";
+        });
+      } else {
+        music.pause();
+        if (musicButton) musicButton.textContent = "🔇";
+      }
+    }
+
+    function startHearts() {
+      if (heartsStarted) return;
+      heartsStarted = true;
+      setInterval(function() {
+        var heart = document.createElement("div");
+        heart.className = "floating-heart";
+        var icons = ["❤️", "💕", "🤍", "✨"];
+        heart.textContent = icons[Math.floor(Math.random() * icons.length)];
+        heart.style.left = (Math.random() * 95) + "vw";
+        heart.style.fontSize = (15 + Math.random() * 18) + "px";
+        document.body.appendChild(heart);
+        setTimeout(function() {
+          if (heart && heart.parentNode) {
+            heart.parentNode.removeChild(heart);
+          }
+        }, 6500);
+      }, 900);
+    }
+
+    // Dynamic generation of all 63 photos into pairs (No cuts, Full view)
+    document.addEventListener("DOMContentLoaded", function() {
+      var book = document.getElementById("bookContainer");
+      var captions = [
+        "Tumcha smile mhanje aamcha happiness ❤️",
+        "A memory worth keeping forever ✨",
+        "Papa + family = perfect combination ❤️",
+        "One frame, countless feelings 🥹",
+        "Papa's smile = gharachi positive energy ✨",
+        "Family + Papa = endless happiness 💕",
+        "Tumchyasobatcha pratyek moment special 🌸",
+        "A beautiful family memory 🌸",
+        "This smile tells a thousand stories ✨",
+        "Some memories are truly priceless ❤️",
+        "Tumhi ani tumcha amazing smile 😊",
+        "A little moment, a big memory 💕",
+        "Forever grateful for this moment 🙏",
+        "Happiness looks like this 🥰",
+        "Papa makes ordinary moments special ❤️",
+        "A moment we'd relive again ✨",
+        "Our favourite memories have you in them ❤️",
+        "Just Papa being Papa 😂",
+        "This moment = pure happiness ❤️",
+        "A memory to smile about 😊",
+        "Our little scrapbook of love 💕",
+        "Some memories never fade ❤️",
+        "Tumchyasobatcha time special aahe 🥹",
+        "A beautiful chapter of our story 📖",
+        "Small moment, big happiness ✨",
+        "Behind this smile is a story ✨",
+        "Another beautiful memory 💕",
+        "This moment feels like home 🏡",
+        "Forever one of our favourites ✨",
+        "A little happiness captured 📸",
+        "Papa, you are one of a kind ❤️"
+      ];
+
+      // Build pages for Photos 1 to 63
+      for (var i = 1; i <= 63; i += 2) {
+        var sec = document.createElement("section");
+        sec.className = "page";
+
+        var p1 = i < 10 ? "0" + i : i;
+        var p2 = (i + 1) <= 63 ? ((i + 1) < 10 ? "0" + (i + 1) : (i + 1)) : null;
+
+        var cap1 = captions[(i - 1) % captions.length];
+        var cap2 = captions[i % captions.length];
+
+        var html = '<div class="content">';
+        html += '<h2>Memories With Papa ❤️</h2>';
+        html += '<div class="photo-stack">';
+        html += '  <div class="stack-card">';
+        html += '    <img src="photos/' + p1 + '.jpg" alt="Memory" onerror="handleImgError(this)">';
+        html += '    <div class="stack-caption">' + cap1 + '</div>';
+        html += '  </div>';
+
+        if (p2) {
+          html += '  <div class="stack-card">';
+          html += '    <img src="photos/' + p2 + '.jpg" alt="Memory" onerror="handleImgError(this)">';
+          html += '    <div class="stack-caption">' + cap2 + '</div>';
+          html += '  </div>';
+        }
+
+        html += '</div>';
+        html += '<button class="next-button" onclick="nextPage()">Next →</button>';
+        html += '</div>';
+
+        sec.innerHTML = html;
+        book.insertBefore(sec, document.getElementById("finalWishPage"));
+      }
+
+      updateCounter();
+    });
+
+    var startX = 0;
+    document.addEventListener("touchstart", function(e) {
+      startX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    document.addEventListener("touchend", function(e) {
+      var diff = startX - e.changedTouches[0].screenX;
+      if (diff > 60) nextPage();
+      if (diff < -60) previousPage();
+    }, { passive: true });
+
+    document.addEventListener("keydown", function(e) {
+      if (e.key === "ArrowRight") nextPage();
+      if (e.key === "ArrowLeft") previousPage();
+    });
+  </script>
+</head>
+<body>
+
+  <!-- INTRO COVER -->
+  <div id="intro">
+    <div class="intro-content">
+      <div class="intro-small">A little surprise for the most special person...</div>
+      <div class="intro-title">Happy 50th<br> Birthday Papa ❤️</div>
+      <div class="intro-subtitle">50 years • countless memories • one amazing Papa</div>
+      <button class="open-button" id="openButton" onclick="openBook()">Tap to Open Your Story ✨</button>
+    </div>
+  </div>
+
+  <audio id="music" src="music.mp3" loop preload="auto"></audio>
+  <button id="musicButton" onclick="toggleMusic()">🔇</button>
+
+  <div class="counter" id="counter">1 / 36</div>
+
+  <!-- BOOK CONTAINER -->
+  <div class="book" id="bookContainer">
+
+    <!-- PAGE 1: Welcome -->
+    <section class="page active">
+      <div class="content">
+        <div class="small">A Special Milestone</div>
+        <h1>Happy<br> 50th Birthday ❤️</h1>
+        <div class="heart">🎂</div>
+        <p>Today is not just another birthday. <br><br> It's 50 years of your journey, 50 years of memories, and 50 years of being the person we are lucky to call <b>Papa.</b></p>
+        <button class="next-button" onclick="nextPage()">Start Our Story → ❤️</button>
+      </div>
+    </section>
+
+    <!-- PAGE 2: Chapter 1 -->
+    <section class="page">
+      <div class="content">
+        <div class="small">Chapter 01</div>
+        <h1>The Man<br> Behind Our Story</h1>
+        <p>Papa, tumhi fakt aamche father nahi... <br><br> Tumhi aamchya gharachi strength, aamcha support, ani pratyek chhotya mothya happiness cha sundar bhaag aahat.</p>
+        <button class="next-button" onclick="nextPage()">Next →</button>
+      </div>
+    </section>
+
+    <!-- PAGE 3: Letter -->
+    <section class="page">
+      <div class="content">
+        <div class="small">A Heartfelt Note</div>
+        <h2>Dear Papa... ❤️</h2>
+        <p style="font-size:16px;">Tumhi aamchyasathi kay aahat he shabdat sangne ashakya aahe. <br><br> Tumchi mehnat, tumcha aadhar, tumchi kalji, ani aamchyasathi kelele tyag... <br><br> Kadachit aamhi darroj bolat nahi, pan aamhala manapasun sagla janavta. ❤️</p>
+        <button class="next-button" onclick="nextPage()">Next →</button>
+      </div>
+    </section>
+
+    <!-- PAGE 4: Hero -->
+    <section class="page">
+      <div class="content">
+        <div class="heart">❤️</div>
+        <h2>Our Forever Hero</h2>
+        <p style="font-size:16px;">Superhero costume nasto... <br><br> Kadhi kadhi to fakt Papa asto. <br><br> Always there.<br> Always protecting.<br> Always supporting.</p>
+        <button class="next-button" onclick="nextPage()">Next →</button>
+      </div>
+    </section>
+
+    <!-- FINAL PAGE (All 63 photos will be inserted dynamically right before this page) -->
+    <section class="page" id="finalWishPage">
+      <div class="content">
+        <div class="small">The Final Page</div>
+        <div class="heart">🎂</div>
+        <h1>Happy 50th<br> Birthday Papa ❤️</h1>
+        <p style="font-size:16px;">
+          50 years of your life... <br>
+          50 years of memories... <br>
+          50 years of being the best Papa. <br><br>
+          Thank you for every sacrifice, every smile, every lesson, and every hug. <br><br>
+          <b>Tumhi aahat mhanun aamcha ghar purna aahe! ❤️</b>
+        </p>
+        <div style="margin-top:16px; font-size:21px;">🎉 50 & Fabulous 🎉</div>
+        <p style="margin-top:10px; font-size:13px;">Made with endless love ❤️</p>
+        <button class="next-button" onclick="showPage(0)">Read Again ↻</button>
+      </div>
+    </section>
+
+  </div>
+
+  <div class="nav">
+    <button id="backButton" onclick="previousPage()" aria-label="Previous Page">←</button>
+    <button id="nextButton" onclick="nextPage()" aria-label="Next Page">→</button>
+  </div>
+
+</body>
+</html>
