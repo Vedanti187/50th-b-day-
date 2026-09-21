@@ -204,7 +204,7 @@
       50% { transform: scale(1.15); }
     }
 
-    /* IMAGE STACK - ZERO CUTTING */
+    /* IMAGE STACK */
     .photo-stack {
       width: 100%;
       display: flex;
@@ -308,14 +308,15 @@
     var currentPage = 0;
     var heartsStarted = false;
 
+    // Fallback: Check if image is in root directly if photos/ fails
     function handleImgError(img) {
       var attempt = parseInt(img.dataset.attempt || "0", 10);
       var currentSrc = img.getAttribute("src") || "";
 
       if (attempt === 0) {
         img.dataset.attempt = "1";
-        if (currentSrc.indexOf("photos/0") !== -1) {
-          img.src = currentSrc.replace("photos/0", "photos/");
+        if (currentSrc.indexOf("photos/") !== -1) {
+          img.src = currentSrc.replace("photos/", "");
           return;
         }
       }
@@ -323,13 +324,6 @@
         img.dataset.attempt = "2";
         if (img.src.indexOf(".jpg") !== -1) {
           img.src = img.src.replace(".jpg", ".jpeg");
-          return;
-        }
-      }
-      if (attempt <= 2) {
-        img.dataset.attempt = "3";
-        if (img.src.indexOf(".jpeg") !== -1) {
-          img.src = img.src.replace(".jpeg", ".png");
           return;
         }
       }
@@ -441,7 +435,7 @@
       }, 900);
     }
 
-    // Dynamic generation of all 63 photos into pairs (No cuts, Full view)
+    // Dynamic generation of photos
     document.addEventListener("DOMContentLoaded", function() {
       var book = document.getElementById("bookContainer");
       var captions = [
@@ -478,13 +472,13 @@
         "Papa, you are one of a kind ❤️"
       ];
 
-      // Build pages for Photos 1 to 63
+      // Build pages for Photos 1 to 63 (Path: photos/1.jpg, photos/2.jpg, etc.)
       for (var i = 1; i <= 63; i += 2) {
         var sec = document.createElement("section");
         sec.className = "page";
 
-        var p1 = i < 10 ? "0" + i : i;
-        var p2 = (i + 1) <= 63 ? ((i + 1) < 10 ? "0" + (i + 1) : (i + 1)) : null;
+        var p1 = i;
+        var p2 = (i + 1) <= 63 ? (i + 1) : null;
 
         var cap1 = captions[(i - 1) % captions.length];
         var cap2 = captions[i % captions.length];
@@ -593,7 +587,7 @@
       </div>
     </section>
 
-    <!-- FINAL PAGE (All 63 photos will be inserted dynamically right before this page) -->
+    <!-- FINAL PAGE -->
     <section class="page" id="finalWishPage">
       <div class="content">
         <div class="small">The Final Page</div>
